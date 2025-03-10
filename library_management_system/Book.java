@@ -34,6 +34,21 @@ public class Book {
         isAvailable = available;
     }
 
+    // Borrow the book (if it's available)
+    public boolean borrowBook() {
+        if (isAvailable) {
+            isAvailable = false;
+            return true;
+        }
+
+        return false; // Book already borrowed
+    }
+
+    // Return the book
+    public void returnBook() {
+        isAvailable = true;
+    }
+
     // Override toString() to display book details
     @Override
     public String toString() {

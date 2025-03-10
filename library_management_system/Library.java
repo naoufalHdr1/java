@@ -27,4 +27,34 @@ public class Library {
             System.out.println(book);
         }
     }
+
+    // Borrow a book by ISBN
+    public void borrowBook(String isbn) {
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                if (book.borrowBook()) {
+                    System.out.println("You borrowed: " + book.getTitle());
+                } else {
+                    System.out.println("Sorry, this book is already borrowed.");
+                }
+                return;
+            }
+        }
+        System.out.println("Book not found");
+    }
+
+    // Return a book by ISBN
+    public void returnBook(String isbn) {
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                if (!book.isAvailable()) {
+                    System.out.println("You returned: " + book.getTitle());
+                } else {
+                    System.out.println("This book was not borrowed.");
+                }
+                return;
+            }
+        }
+        System.out.println("Book not found");
+    }
 }
