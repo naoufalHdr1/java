@@ -1,12 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Library {
     private List<Book> books; // List to store books
+    private Map<String, User> users; // Map userId to User object
 
     // constructor
     public Library() {
         this.books = new ArrayList<>();
+        this.users = new HashMap<>();
     }
 
     // Add a book to the library
@@ -29,11 +33,17 @@ public class Library {
     }
 
     // Borrow a book by ISBN
-    public void borrowBook(String isbn) {
+    public void borrowBook(String isbn, String userId) {
+        User user = users.get(userId);
+        if (!user) {
+            System.out.println("User not found");
+            return;
+        }
+
         for (Book book : books) {
             if (book.getIsbn().equals(isbn)) {
-                if (book.borrowBook()) {
-                    System.out.println("You borrowed: " + book.getTitle());
+                if (user.borrowBook(book)) {
+                    System.out.println(user.getName() + " borrowed: " + book.getTitle());
                 } else {
                     System.out.println("Sorry, this book is already borrowed.");
                 }
@@ -44,17 +54,26 @@ public class Library {
     }
 
     // Return a book by ISBN
-    public void returnBook(String isbn) {
-        for (Book book : books) {
-            if (book.getIsbn().equals(isbn)) {
-                if (!book.isAvailable()) {
-                    System.out.println("You returned: " + book.getTitle());
-                } else {
-                    System.out.println("This book was not borrowed.");
-                }
-                return;
-            }
+    public void returnBook(String isbn, String userId) {
+        User user = users.get(userId);
+        if (!user) {
+            System.out.println("User not found");
+            return;
         }
-        System.out.println("Book not found");
+
+        if (user.returnBook(isbn)) {
+            System.out.println(user.getName() + " returned the book.);
+        } else {
+            System.out.println("You haven't borrowed this book.");
+        }
+    }
+
+    public void displayUserborrowedBooks(String userId) {
+        User user = users.get(userId);
+        if (user) {
+            user.displayBorrowedBooks();
+        } else {
+            System.out.println("User not found!");
+        }
     }
 }
