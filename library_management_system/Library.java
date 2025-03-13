@@ -19,6 +19,15 @@ public class Library {
         System.out.println("Book added: " + book.getTitle());
     }
 
+    public void registerUser(User user) {
+        if (!users.containsKey(user.getUserId())) {
+            users.put(user.getUserId(), user);
+            System.out.println("User registered: " + user.getName());
+        } else {
+            System.out.println("User Id already exists!");
+        }
+    }
+
     // Display all books
     public void displayBooks() {
         if (books.isEmpty()) {
@@ -34,8 +43,11 @@ public class Library {
 
     // Borrow a book by ISBN
     public void borrowBook(String isbn, String userId) {
+        System.out.println("-- users=" + users);
+        System.out.println("-- userId=" + userId);
         User user = users.get(userId);
-        if (!user) {
+        System.out.println("-- user=" + user);
+        if (user == null) {
             System.out.println("User not found");
             return;
         }
@@ -56,7 +68,7 @@ public class Library {
     // Return a book by ISBN
     public void returnBook(String isbn, String userId) {
         User user = users.get(userId);
-        if (!user) {
+        if (user == null) {
             System.out.println("User not found");
             return;
         }
@@ -68,9 +80,9 @@ public class Library {
         }
     }
 
-    public void displayUserborrowedBooks(String userId) {
+    public void displayUserBorrowedBooks(String userId) {
         User user = users.get(userId);
-        if (user) {
+        if (user != null) {
             user.displayBorrowedBooks();
         } else {
             System.out.println("User not found!");

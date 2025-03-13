@@ -39,14 +39,14 @@ public class Main {
                     String borrowUserId = scanner.nextLine();
                     System.out.print("Enter ISBN of book to borrow: ");
                     String borrowIsbn = scanner.nextLine();
-                    library.borrowBook(borrowUserId, borrowIsbn);
+                    library.borrowBook(borrowIsbn, borrowUserId);
                     break;
                 case 3:
                     System.out.print("Enter your User ID: ");
                     String returnUserId = scanner.nextLine();
                     System.out.print("Enter ISBN of book to return: ");
                     String returnIsbn = scanner.nextLine();
-                    library.returnBook(returnUserId, returnIsbn);
+                    library.returnBook(returnIsbn, returnUserId);
                     break;
                 case 4:
                     System.out.print("Enter your User ID: ");

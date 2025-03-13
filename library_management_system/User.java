@@ -4,7 +4,7 @@ import java.util.List;
 public class User {
     private String userId;
     private String name;
-    private list<Book> borrowedBooks;
+    private List<Book> borrowedBooks;
 
     public User(String userId, String name) {
         this.userId = userId;
