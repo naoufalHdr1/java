@@ -62,7 +62,7 @@ public class Library {
         }
 
         if (user.returnBook(isbn)) {
-            System.out.println(user.getName() + " returned the book.);
+            System.out.println(user.getName() + " returned the book.");
         } else {
             System.out.println("You haven't borrowed this book.");
         }
@@ -74,6 +74,52 @@ public class Library {
             user.displayBorrowedBooks();
         } else {
             System.out.println("User not found!");
+        }
+    }
+
+    // Search books by title
+    public void searchByTitle(String title) {
+        List<Book> foundBooks = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                foundBooks.add(book);
+            }
+        }
+        displaySearchResults(foundBooks, "Title: " + title);
+    }
+
+    // Search books by author
+    public void searchByAuthor(String author) {
+        List<Book> foundBooks = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+                foundBooks.add(book);
+            }
+        }
+        displaySearchResults(foundBooks, "Author: " + author);
+    }
+
+    // Display available books only
+    public void displayAvailableBooks() {
+        List<Book> availableBooks = new ArrayList<>();
+        for (Book book : books) {
+            if (book.isAvailable()) {
+                availableBooks.add(book);
+            }
+        }
+        displaySearchResults(availableBooks, "Available Books");
+        
+    }
+
+    // Helper method to display search results
+    public void displaySearchResults(List<Book> foundBooks, String searchCriteria) {
+        System.out.println("\nSearch Results for " + searchCriteria + ":");
+        if (foundBooks.isEmpty()) {
+            System.out.println("No books found.");
+        } else {
+            for (Book book : foundBooks) {
+                System.out.println(book);
+            }
         }
     }
 }
