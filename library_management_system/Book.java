@@ -3,13 +3,15 @@ public class Book {
     private String author;
     private String isbn;
     private boolean isAvailable;
+    private String genre;
 
     // Constructor
-    public Book(String title, String author, String isbn) {
+    public Book(String title, String author, String isbn, String genre) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.isAvailable = true; // Default: available
+        this.genre = genre;
     }
 
     // Getters
@@ -27,6 +29,10 @@ public class Book {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 
     // Setters

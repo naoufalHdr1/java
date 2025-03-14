@@ -5,10 +5,11 @@ public class Main {
         Library library = new Library();
 
         // Adding books to the library
-        library.addBook(new Book("The Hobbit", "J.R.R. Tolkien", "123456"));
-        library.addBook(new Book("1984", "George Orwell", "654321"));
-        library.addBook(new Book("Clean Code", "Robert C. Martin", "987654"));
-        library.addBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", "112233"));
+        library.addBook(new Book("The Hobbit", "J.R.R. Tolkien", "123456", "Fantasy"));
+        library.addBook(new Book("1984", "George Orwell", "654321", "Dystopian"));
+        library.addBook(new Book("Clean Code", "Robert C. Martin", "987654", "Technology"));
+        library.addBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", "112233", "Fantasy"));
+        library.addBook(new Book("A Brief History of Time", "Stephen Hawking", "445566", "Science"));
 
         // Registering users
         library.registerUser(new User("U001", "Alice"));
@@ -24,7 +25,8 @@ public class Main {
             System.out.println("5. Search Book by Title");
             System.out.println("6. Search Book by Author");
             System.out.println("7. View Available Books");
-            System.out.println("8. Exit");
+            System.out.println("8. Filter Books by Genre");
+            System.out.println("9. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -67,6 +69,11 @@ public class Main {
                     library.displayAvailableBooks();
                     break;
                 case 8:
+                    System.out.print("Enter genre to filter by: ");
+                    String genre = scanner.nextLine();
+                    library.filterByGenre(genre);
+                    break;
+                case 9:
                     System.out.println("Exiting Library System. Goodbye!");
                     scanner.close();
                     return;

@@ -111,6 +111,17 @@ public class Library {
         displaySearchResults(foundBooks, "Author: " + author);
     }
 
+    // Filter books by genre
+    public void filterByGenre(String genre) {
+        List<Book> filteredBooks = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getGenre().equalsIgnoreCase(genre)) {
+                filteredBooks.add(book);
+            }
+        }
+        displaySearchResults(filteredBooks, "Genre: " + genre);
+    }
+
     // Display available books only
     public void displayAvailableBooks() {
         List<Book> availableBooks = new ArrayList<>();
