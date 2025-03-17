@@ -43,10 +43,7 @@ public class Library {
 
     // Borrow a book by ISBN
     public void borrowBook(String isbn, String userId) {
-        System.out.println("-- users=" + users);
-        System.out.println("-- userId=" + userId);
         User user = users.get(userId);
-        System.out.println("-- user=" + user);
         if (user == null) {
             System.out.println("User not found");
             return;
@@ -143,6 +140,24 @@ public class Library {
             for (Book book : foundBooks) {
                 System.out.println(book);
             }
+        }
+    }
+
+    public void checkUserFine(String userId) {
+        User user = users.get(userId);
+        if (user != null) {
+            user.displayFines();
+        } else {
+            System.out.println("User not found.");
+        }
+    }
+
+    public void payUserFine(String userId, double amount) {
+        User user = users.get(userId);
+        if (user != null) {
+            user.payFine(amount);
+        } else {
+            System.out.println("User not found.");
         }
     }
 }

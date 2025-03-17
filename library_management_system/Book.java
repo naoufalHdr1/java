@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+
 public class Book {
     private String title;
     private String author;
     private String isbn;
     private boolean isAvailable;
     private String genre;
+    private LocalDate borrowDate;
+    private LocalDate dueDate;
 
     // Constructor
     public Book(String title, String author, String isbn, String genre) {
@@ -35,6 +39,10 @@ public class Book {
         return genre;
     }
 
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
     // Setters
     public void setAvailable(boolean available) {
         isAvailable = available;
@@ -44,6 +52,8 @@ public class Book {
     public boolean borrowBook() {
         if (isAvailable) {
             isAvailable = false;
+            this.borrowDate = LocalDate.now();
+            this.dueDate = borrowDate.plusDays(7);
             return true;
         }
 
@@ -53,6 +63,8 @@ public class Book {
     // Return the book
     public void returnBook() {
         isAvailable = true;
+        this.borrowDate = null;
+        this.dueDate = null;
     }
 
     // Override toString() to display book details
@@ -63,6 +75,7 @@ public class Book {
                 ", Author='" + author + '\'' +
                 ", ISBN='" + isbn + '\'' +
                 ", Available=" + (isAvailable ? "Yes" : "No") +
+                (dueDate != null ? ", Due Date: " + dueDate : "" ) +
                 '}';
     }
 }

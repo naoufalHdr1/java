@@ -26,7 +26,9 @@ public class Main {
             System.out.println("6. Search Book by Author");
             System.out.println("7. View Available Books");
             System.out.println("8. Filter Books by Genre");
-            System.out.println("9. Exit");
+            System.out.println("9. Check Fine");
+            System.out.println("10. Pay Fine");
+            System.out.println("11. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -74,6 +76,18 @@ public class Main {
                     library.filterByGenre(genre);
                     break;
                 case 9:
+                    System.out.println("Enter your User ID: ");
+                    String checkUserId = scanner.nextLine();
+                    library.checkUserFine(checkUserId);
+                    break;
+                case 10:
+                    System.out.println("Enter your User ID: ");
+                    String payUserId = scanner.nextLine();
+                    System.out.println("Enter amount to pay: ");
+                    double amount = scanner.nextDouble();
+                    library.payUserFine(payUserId, amount);
+                    break;
+                case 11:
                     System.out.println("Exiting Library System. Goodbye!");
                     scanner.close();
                     return;
